@@ -1,0 +1,144 @@
+<!DOCTYPE = html>
+<html>
+<head>
+	<title>Form</title>
+  <style>
+    form .error {
+	color: #ff0000;
+       }
+  </style>
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> 
+  <script type="text/javascript">
+   $(function() {
+     $("form[name='myForm']").validate({
+       rules: { 
+        full_name: "required",
+        email: {
+          required: true,
+          email: true},
+        password: {
+          required: true,
+          minlength: 8},
+        confirm_password: {
+          required: true,
+          equalTo: '#password'        
+        } ,
+	date: "required",
+        city: "required",
+        address: "required",
+        zipcode: {
+          required: true,
+          number: true,
+         },
+        gender: "required",
+        hobby: "required",
+       },
+      messages: {
+        full_name: "Please enter your firstname",
+	 email: {
+          required: "Please enter your email",
+          email: "Please enter a valid email address"},
+        password: {
+          required: "Please enter password",
+          minlength: "Your password must be at least 8 characters long"},
+        confirm_password: {
+          required: "Please enter confirm-password",
+          equalTo: "please enter the same password"},
+	date: "Enter valid date",
+    
+        city: "Please select your city",
+        address: "please enter your address",
+        zipcode: {
+          required: "Please enter your zip code",
+          number: "Please enter a valid number"},  
+        gender: "Please select gender",
+        hobby: "Please select hobby"
+                },
+     
+      errorPlacement: function(error, element){
+       if(element.is(":radio")){
+         error.appendTo(element.parent(".gender"));
+       }else if(element.is(":checkbox")){
+         error.appendTo(element.parent(".hobbies"));
+       }else{
+        error.insertAfter(element);
+       }      
+      }
+
+     });
+   });
+</script>
+
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background: url('https://image.ibb.co/cV81tH/fall_powerpoint_templates_free_fall_powerpoint_templates_powerpoint_background_google_search_download_750x425.jpg'); background-size: cover;">	
+<form  name="myForm" action="#" method="post" style="background: transparent;">
+	<fieldset style="max-width: 42%; max-height: 700px; margin: auto;">
+		<h1 style="text-align: center;"><u>Form</u></h1>
+		
+	<table border="3" style="margin: auto; max-height:600px; max-width: 60%;">
+		<tr>
+			<td>Name:</td>
+			<td style="text-align: left;"><input type="text" name="full_name" style="width:210px;"></td>
+		</tr>	
+		<tr>
+			<td>Email:</td>
+			<td style="text-align: left;"><input type="email" name="email" style="width:210px;"></td>
+		</tr>
+		<tr>
+			<td>Password:</td>
+			<td style="text-align: left;"><input type="password" name="password" style="width:210px; id="password"></td>
+		</tr>
+		<tr>
+			<td>Confirm Password:</td>
+			<td style="text-align: left;"><input type="password" name="confirm_password" style="width:210px;"></td>
+		</tr>
+		<tr>
+			<td>Date:</td>
+			<td style="text-align: left;"><input type="date" name="date" style="color: black;"></td>
+		</tr>
+		<tr>
+			<td>City</td>
+			<td style="text-align: left;"><select name="city" style="color: black;">
+			<option value="">Select_City</option>
+			<option value="Rajkot">Rajkot</option>
+			<option value="Surat">Surat</option>
+	     		</select></td>
+		</tr>
+		
+		<tr>
+			<td>Gender:</td>
+			<td class="gender"><input type="radio" name="gender" value="Male">Male
+			    <input type="radio" name="gender" value="Female">Female
+			    <input type="radio" name="gender"value="Other">Other</td>
+		</tr>
+		<tr>
+			<td>Address:</td>
+	   		<td><textarea name="address" style="width:230px; height:80px"></textarea></td>
+		</tr>
+		<tr>
+			<td>Zip Code:</td>
+	   		<td><input type="text" name="zipcode" style="width:230px;"></td>
+		</tr>
+		
+		<tr>
+			<td>Hobbies:</td>
+			<td class="hobbies"><input type="checkbox" name="hobby" value="Cricket">
+			    <label for="hobby1">Cricket</label>
+			    <input type="checkbox" name="hobby" value="Hockey">
+			    <label for="hobby2">Hockey</label>
+			    <input type="checkbox" name="hobby" value="Football">
+			    <label for="hobby3">Football</label></td>
+		</tr>	
+
+		<tr>
+			<td colspan="2" style="text-align: right;"><input type="submit" name="submit" style="text-align: center;width:100px; border-radius: 20px;  background: #d0cfdc;"></td>
+		</tr>
+	</table>
+	</fieldset>
+</form>
+</body>
+</html>
